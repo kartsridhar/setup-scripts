@@ -46,7 +46,7 @@ install_package() {
 sudo apt update -y > /dev/null && sudo apt upgrade -y > /dev/null
 
 # Install packages with retry and logging
-declare -a packages=("openssh-server" "htop" "net-tools" "curl" "python3-pip" "unzip" "git" "default-jdk" "nodejs")
+declare -a packages=("openssh-server" "htop" "net-tools" "curl" "python3-pip" "unzip" "git" "default-jdk")
 for pkg in "${packages[@]}"; do
   install_package "$pkg"
 done
@@ -119,3 +119,7 @@ sudo usermod -aG docker $(whoami)
 # Activate changes in group membership
 
 newgrp docker
+
+# Install Nodejs via. nodesource
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install nodejs
